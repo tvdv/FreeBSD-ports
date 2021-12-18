@@ -30,12 +30,14 @@ do-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}
 	${MKDIR} ${STAGEDIR}${PREFIX}/www
 	${MKDIR} ${STAGEDIR}${PREFIX}/bin
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/coredns
 	${INSTALL_PROGRAM} ${WRKDIR}/bin/pfSense-pkg-coredns ${STAGEDIR}${PREFIX}/bin/coredns
 	${INSTALL_DATA} ${FILESDIR}${PREFIX}/pkg/coredns.xml ${STAGEDIR}${PREFIX}/pkg
 	${INSTALL_DATA} ${FILESDIR}${PREFIX}/pkg/coredns/coredns.inc ${STAGEDIR}${PREFIX}/pkg/coredns
 	${INSTALL_DATA} ${FILESDIR}${DATADIR}/info.xml ${STAGEDIR}${DATADIR}
 	${INSTALL_DATA} ${FILESDIR}${PREFIX}/www/coredns_settings.php ${STAGEDIR}${PREFIX}/www
 	${INSTALL_DATA} ${FILESDIR}${DATADIR}/info.xml ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${FILESDIR}${PREFIX}/etc/coredns/Corefile ${STAGEDIR}${PREFIX}/etc/coredns
 
 	@${REINPLACE_CMD} -i '' -e "s|%%PKGVERSION%%|${PKGVERSION}|" \
 		${STAGEDIR}${DATADIR}/info.xml

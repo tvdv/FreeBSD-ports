@@ -55,3 +55,4 @@ pkg/coredns.xml
 pkg/coredns/coredns.inc
 %%DATADIR%%/info.xml
 www/coredns_settings.php
+etc/coredns/Corefile

@@ -23,6 +23,29 @@ if ($input_errors) {
 	print_input_errors($input_errors);
 }
 
+if ($_POST) {
+	unset($input_errors);
+	$pconfig = $_POST;
+
+	// TODO : VALIDATION
+	
+	if (!$input_errors) {
+		$coredns = array();
+		$coredns['enable'] = $pconfig['enable'];
+		$coredns['corefile'] = $pconfig['corefile'];
+
+
+		$a_coredns=$coredns;
+		write_config("coredns update");
+
+		coredns_sync_config();
+
+		header("Location: coredns_settings.php");
+		exit;
+	}
+
+}
+
 $form = new Form;
 $section = new Form_Section('General Settings');
 
@@ -32,6 +55,13 @@ $section->addInput(new Form_Checkbox(
 	'Enable the Coredns daemon',
 	$pconfig['enable']
 ));
+
+
+$section->addInput(new Form_Textarea(
+	'corefile',
+	'Corefile',
+	$pconfig['corefile']
+))->setHelp('Full CoreDns CoreFile configuration');
 
 $form->add($section);
 
