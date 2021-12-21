@@ -8,20 +8,7 @@ if (!is_array($config['installedpackages']['coredns']['config'])) {
 }
 $a_coredns = &$config['installedpackages']['coredns']['config'][0];
 
-/* TODO HANDLE INPUT POST */
-
-
-
-$pgtitle = array(gettext("Services"), gettext("Coredns"));
-include("head.inc");
-
-if (isset($migration_warning)) {
-	print_info_box($migration_warning);
-}
-
-if ($input_errors) {
-	print_input_errors($input_errors);
-}
+$pconfig = $a_coredns;
 
 if ($_POST) {
 	unset($input_errors);
@@ -35,7 +22,7 @@ if ($_POST) {
 		$coredns['corefile'] = $pconfig['corefile'];
 
 
-		$a_coredns=$coredns;
+		$a_coredns = $coredns;
 		write_config("coredns update");
 
 		coredns_sync_config();
@@ -45,6 +32,16 @@ if ($_POST) {
 	}
 
 }
+
+
+$pgtitle = array(gettext("Services"), gettext("Coredns"));
+include("head.inc");
+
+
+if ($input_errors) {
+	print_input_errors($input_errors);
+}
+
 
 $form = new Form;
 $section = new Form_Section('General Settings');
