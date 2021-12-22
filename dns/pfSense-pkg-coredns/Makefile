@@ -20,10 +20,12 @@ PORTSCOUT=	limit:^[0-9]*\.[0-9]*\.[0-9]*$$ # otherwise it picks up the deleted t
 SUB_FILES=	pkg-install pkg-deinstall
 SUB_LIST=	PORTNAME=${PORTNAME}
 
+post-patch:
+	cp ${FILESDIR}/plugin.cfg ${PATCH_WRKSRC}
+
+	# TODO: Is there a more proper way to call go generate?
+	cd ${PATCH_WRKSRC} && go generate
 do-install:
-	echo ${STAGEDIR}
-	echo ${WRKDIR}
-	echo ${PREFIX}
 	${MKDIR} ${STAGEDIR}${PREFIX}/pkg/coredns
 	${MKDIR} ${STAGEDIR}${DATADIR}
 	${MKDIR} ${STAGEDIR}${PREFIX}/www
