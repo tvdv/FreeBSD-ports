@@ -14,12 +14,11 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	// TODO : VALIDATION
 	
 	if (!$input_errors) {
 		$coredns = array();
 		$coredns['enable'] = $pconfig['enable'];
-		$coredns['corefile'] = $pconfig['corefile'];
+		$coredns['corefile'] = str_replace("\r\n", "\n", $pconfig['corefile']);
 
 
 		$a_coredns = $coredns;

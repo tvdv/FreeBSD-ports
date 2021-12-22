@@ -15,8 +15,6 @@ USES=		go:modules
 
 GO_MODULE=	${GIT_SRC}
 
-USE_RC_SUBR=	${PORTNAME}
-
 PORTSCOUT=	limit:^[0-9]*\.[0-9]*\.[0-9]*$$ # otherwise it picks up the deleted tag v011
 
 SUB_FILES=	pkg-install pkg-deinstall

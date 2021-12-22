@@ -1,5 +1,4 @@
 bin/coredns
-etc/rc.d/pfSense-pkg-coredns
 man/man1/coredns.1.gz
 man/man5/corefile.5.gz
 man/man7/coredns-acl.7.gz
