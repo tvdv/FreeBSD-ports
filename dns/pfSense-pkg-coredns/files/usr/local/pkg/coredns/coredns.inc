@@ -25,6 +25,7 @@ function coredns_write_config($coredns_config) {
 
 function coredns_sync_config() {
 	global $config;
+	global $g;
 
 	if (is_service_running('coredns')) {
 		log_error("Stopping service coredns");
@@ -49,7 +50,8 @@ function coredns_sync_config() {
 	/* Write the rc script */
 	$cmd = COREDNS_DAEMON;
 	$start = "	$cmd -conf ";
-        $start .= COREDNS_CONFIG_FILE;
+	$start .= COREDNS_CONFIG_FILE;
+	$start .= " > " . $g['varlog_path'] . "/coredns.log";
 	$stop = "	/usr/bin/killall -q coredns";
 	write_rcfile(array(
 		"file" => "coredns-daemon.sh",

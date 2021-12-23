@@ -57,7 +57,8 @@ $section->addInput(new Form_Textarea(
 	'corefile',
 	'Corefile',
 	$pconfig['corefile']
-))->setHelp('Full CoreDns CoreFile configuration');
+))->setHelp('Full CoreDns CoreFile configuration')
+->setRows(15);
 
 $form->add($section);
 
